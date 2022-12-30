@@ -1,20 +1,18 @@
 import styled from "styled-components";
-import { useGetBooksQuery } from "../store/rtkApi";
+import { IProduct } from "../types/Product";
 
-function Product(): JSX.Element {
-  const { data: products = [] } = useGetBooksQuery();
+interface Props {
+  product: IProduct;
+}
 
-  console.log("produkternerna", products);
-
+function Product({ product }: Props): JSX.Element {
   return (
     <>
-      {products.map((p) => (
-        <Container key={p._id}>
-          <TheStar className="fa-solid fa-star">4.2</TheStar>
-          <img src={p.imgUrl} />
-          <p>{p.title}</p>
-        </Container>
-      ))}
+      <Container key={product._id}>
+        <TheStar className="fa-solid fa-star">4.2</TheStar>
+        <img src={product.imgUrl} />
+        <p>{product.title}</p>
+      </Container>
     </>
   );
 }
@@ -30,7 +28,6 @@ const Container = styled.div`
   background-color: #004cff1e;
   justify-items: center;
   align-items: center;
-  margin-top: 24px;
 
   img {
     width: 130px;

@@ -1,11 +1,15 @@
 import styled from "styled-components";
+import { useGetBooksQuery } from "../store/rtkApi";
+import Product from "./Product";
 
-function ProductList() {
+function ProductList(): JSX.Element {
+  const { data: products = [] } = useGetBooksQuery();
+
   return (
     <Container>
-      {/* {products.map((product) => (
-        <Product {...product} />
-      ))} */}
+      {products.map((product: any) => (
+        <Product key={product._id} product={product} />
+      ))}
     </Container>
   );
 }
