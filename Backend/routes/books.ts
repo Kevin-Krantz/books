@@ -1,15 +1,18 @@
+import { Request, Response } from "express";
 import { Book, validateBook as validate } from "../models/Book";
 import { Genre } from "../models/Genre";
 import express from "express";
+import auth from "middleware/auth";
+import admin from "middleware/admin";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", [auth, admin], async (req: Request, res: Response) => {
   const books = await Book.find();
   return res.send(books);
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req: Request, res: Response) => {
   const book = await Book.findById(req.params.id);
 
   if (!book)
@@ -18,7 +21,7 @@ router.get("/:id", async (req, res) => {
   return res.send(book);
 });
 
-router.post("/", async (req, res) => {
+router.post("/", async (req: Request, res: Response) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.message);
 
@@ -45,7 +48,7 @@ router.post("/", async (req, res) => {
   return res.send(book);
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", async (req: Request, res: Response) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.message);
 
@@ -74,7 +77,7 @@ router.put("/:id", async (req, res) => {
   return res.send(book);
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", async (req: Request, res: Response) => {
   const book = await Book.findByIdAndDelete(req.params.id);
 
   if (!book)
