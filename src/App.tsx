@@ -1,18 +1,20 @@
 import styled from "styled-components";
 import SearchBox from "./components/SearchBox";
 import ProductList from "./components/ProductList";
+import { useState } from "react";
 
 function App(): JSX.Element {
+  const [query, setQuery] = useState("");
+
   const handleSearch = (query: string) => {
-    // Do something with the search query here
-    console.log(query);
+    setQuery(query);
   };
 
   return (
     <>
       <SearchBox onSearch={handleSearch} />
       <Container>
-        <ProductList />
+        <ProductList query={query} setQuery={setQuery} />
       </Container>
     </>
   );

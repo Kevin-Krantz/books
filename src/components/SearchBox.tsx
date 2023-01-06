@@ -4,7 +4,7 @@ type SearchBoxProps = {
   onSearch: (query: string) => void;
 };
 
-const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
+function SearchBox({ onSearch }: SearchBoxProps): JSX.Element {
   const [query, setQuery] = useState("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +27,6 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
       <button type="submit">Go</button>
     </form>
   );
-};
+}
 
 export default SearchBox;

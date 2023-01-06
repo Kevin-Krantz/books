@@ -2,12 +2,21 @@ import styled from "styled-components";
 import { useGetBooksQuery } from "../store/rtkApi";
 import Product from "./Product";
 
-function ProductList(): JSX.Element {
+type ProductListProps = {
+  query: string;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+};
+
+function ProductList({ query, setQuery }: ProductListProps): JSX.Element {
   const { data: products = [] } = useGetBooksQuery();
+
+  const filteredProducts = products.filter((product: any) =>
+    product.title.toLowerCase().includes(query.toLowerCase())
+  );
 
   return (
     <Container>
-      {products.map((product: any) => (
+      {filteredProducts.map((product: any) => (
         <Product key={product._id} product={product} />
       ))}
     </Container>
