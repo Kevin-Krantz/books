@@ -1,25 +1,38 @@
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { useGetBooksQuery } from "../store/rtkApi";
+import { getSearchQuery, setSearchQuery } from "../store/search";
 import Product from "./Product";
 
-type ProductListProps = {
-  query: string;
-  setQuery: React.Dispatch<React.SetStateAction<string>>;
-};
+function ProductList(): JSX.Element {
+  const { searchQuery } = useSelector(getSearchQuery);
 
-function ProductList({ query, setQuery }: ProductListProps): JSX.Element {
+  const dispatch = useDispatch();
   const { data: products = [] } = useGetBooksQuery();
 
-  const filteredProducts = products.filter((product: any) =>
-    product.title.toLowerCase().includes(query.toLowerCase())
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchQuery(event.target.value));
+  };
+
+  const filteredProducts = products.filter((product) =>
+    product.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
-    <Container>
-      {filteredProducts.map((product: any) => (
-        <Product key={product._id} product={product} />
-      ))}
-    </Container>
+    <>
+      <input
+        type="text"
+        placeholder="Search products"
+        value={searchQuery}
+        onChange={handleSearch}
+      />
+      <Container>
+        {filteredProducts.map((product: any) => (
+          <Product key={product._id} product={product} />
+        ))}
+      </Container>
+    </>
   );
 }
 

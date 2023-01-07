@@ -7,7 +7,7 @@ import admin from "middleware/admin";
 
 const router = express.Router();
 
-router.get("/", [auth, admin], async (req: Request, res: Response) => {
+router.get("/", async (req: Request, res: Response) => {
   const books = await Book.find();
   return res.send(books);
 });
