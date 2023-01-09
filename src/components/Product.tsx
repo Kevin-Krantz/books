@@ -29,10 +29,24 @@ const Container = styled.div`
   justify-items: center;
   align-items: center;
 
+  transition: background-color 0.5s;
+  &:hover {
+    background-color: #004cff9a;
+  }
+
   img {
     width: 130px;
     height: 200px;
     margin-top: 25px;
+
+    filter: saturate(100%);
+  }
+
+  &:hover {
+    background-color: #004cff9a;
+    img {
+      filter: saturate(200%);
+    }
   }
 
   p {

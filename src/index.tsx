@@ -3,6 +3,7 @@ import App from "./App";
 import configureStore from "./store/configureStore";
 import ReactDOM from "react-dom/client";
 import "@fortawesome/fontawesome-free/css/all.css";
+import "./index.css";
 
 // calling configureStore that it gives me my root reducer internally
 const store = configureStore();
