@@ -3,3 +3,8 @@
   margin: 0;
   font-family: "Nunito", sans-serif;
 }
+
+body {
+  background-image: url("../public/images/Background.png");
+  background-size: cover;
+}

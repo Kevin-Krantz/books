@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { IProduct } from "../types/Product";
+import { Link } from "react-router-dom";
 
 interface Props {
   product: IProduct;
@@ -8,11 +9,13 @@ interface Props {
 function Product({ product }: Props): JSX.Element {
   return (
     <>
-      <Container key={product._id}>
-        <TheStar className="fa-solid fa-star">4.2</TheStar>
-        <img src={product.imgUrl} />
-        <p>{product.title}</p>
-      </Container>
+      <Link to={`/books/${product._id}`}>
+        <Container key={product._id}>
+          <TheStar className="fa-solid fa-star">4.2</TheStar>
+          <img src={product.imgUrl} />
+          <p>{product.title}</p>
+        </Container>
+      </Link>
     </>
   );
 }
@@ -25,25 +28,24 @@ const Container = styled.div`
   height: 250px;
   border-radius: 16px;
   border: 1px black;
-  background-color: #004cff1e;
+  background-color: #54064a75;
   justify-items: center;
   align-items: center;
 
   transition: background-color 0.5s;
   &:hover {
-    background-color: #004cff9a;
+    background-color: #ffffffb5;
   }
 
   img {
     width: 130px;
     height: 200px;
     margin-top: 25px;
-
-    filter: saturate(100%);
+    transition: filter 0.5s;
+    z-index: 1;
   }
 
   &:hover {
-    background-color: #004cff9a;
     img {
       filter: saturate(200%);
     }
@@ -66,4 +68,5 @@ const TheStar = styled.div`
   padding-top: 5px;
   padding-left: 10px;
   color: #213a7d;
+  z-index: 2;
 `;

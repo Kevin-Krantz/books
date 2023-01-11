@@ -39,5 +39,6 @@ const Container = styled.div`
   justify-items: center;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 72px;
-  margin-top: 16px;
+  margin-left: 100px;
+  margin-top: 32px;
 `;
