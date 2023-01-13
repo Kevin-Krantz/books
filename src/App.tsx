@@ -9,8 +9,8 @@ function App(): JSX.Element {
     <BrowserRouter>
       <Container>
         <SideBar />
-        <ProductList />
         <Routes>
+          <Route path="/" element={<ProductList />} />
           <Route path="/books/:id" element={<BookPage />} />
         </Routes>
       </Container>

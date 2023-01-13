@@ -9,7 +9,7 @@ interface Props {
 function Product({ product }: Props): JSX.Element {
   return (
     <>
-      <Link to={`/books/${product._id}`}>
+      <Link style={{ all: "unset" }} to={`/books/${product._id}`}>
         <Container key={product._id}>
           <TheStar className="fa-solid fa-star">4.2</TheStar>
           <img src={product.imgUrl} />
@@ -31,6 +31,8 @@ const Container = styled.div`
   background-color: #54064a75;
   justify-items: center;
   align-items: center;
+
+  cursor: pointer;
 
   transition: background-color 0.5s;
   &:hover {
