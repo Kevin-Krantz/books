@@ -9,7 +9,7 @@ const api = createApi({
       query: () => "/books",
       providesTags: ["Books"] as any,
     }),
-    getBook: build.query<IBook[], void>({
+    getBook: build.query<IBook, void>({
       query: (id) => "/books/" + id,
     }),
     updateBook: build.mutation({

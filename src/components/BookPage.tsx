@@ -7,12 +7,15 @@ function BookPage(): JSX.Element {
 
   const { data: product } = useGetBookQuery(id);
 
-  console.log(product, "BOOK??!?!?! u THERE !=!!=?!?!?!?!?!?");
-
   return (
     <Container>
-      <h1>hejsan</h1>
-      {/* <h1> Page gabbebög {product.map((p) => p.numberInStock)} </h1> */}
+      {product && (
+        <div>
+          <Image src={product.imgUrl} alt={product.title} />
+          <Title>{product.title}</Title>
+          <Author>{product.author}</Author>
+        </div>
+      )}
     </Container>
   );
 }
@@ -20,5 +23,21 @@ function BookPage(): JSX.Element {
 export default BookPage;
 
 const Container = styled.div`
-  margin-left: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Image = styled.img`
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+`;
+
+const Title = styled.h1`
+  font-size: 2em;
+  margin-top: 20px;
+`;
+
+const Author = styled.h2`
+  font-size: 1.5em;
+  margin-top: 10px;
 `;
