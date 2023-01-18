@@ -1,13 +1,28 @@
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { getIsOpen, setToggle } from "../store/sideBar";
 
 function SideBar() {
+  const dispatch = useDispatch();
+
+  const { isOpen } = useSelector(getIsOpen);
+
+  console.log(isOpen, "were u at?");
+
   return (
-    <Container className="sidenav">
-      <a href="#">About</a>
-      <a href="#">Services</a>
-      <a href="#">Clients</a>
-      <a href="#">Contact</a>
-    </Container>
+    <>
+      <button onClick={() => dispatch(setToggle())}>☰</button>
+      <Container className={`sidenav ${isOpen ? "is-open" : "is-closed"}`}>
+        <button onClick={() => dispatch(setToggle())}>☰</button>
+
+        <>
+          <a href="#">About</a>
+          <a href="#">Services</a>
+          <a href="#">Clients</a>
+          <a href="#">Contact</a>
+        </>
+      </Container>
+    </>
   );
 }
 
@@ -17,7 +32,6 @@ const Container = styled.div`
   /* The sidebar menu */
   &.sidenav {
     height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 160px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
@@ -25,6 +39,15 @@ const Container = styled.div`
     background-color: #111; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
+    visibility: hidden;
+    transition: width 0.3s ease-out;
+  }
+  &.sidenav.is-open {
+    width: 160px;
+    visibility: visible;
+  }
+  &.sidenav.is-closed {
+    width: 0;
   }
 
   /* The navigation menu links */

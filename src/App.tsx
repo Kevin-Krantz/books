@@ -10,7 +10,7 @@ function App(): JSX.Element {
       <Container>
         <SideBar />
         <Routes>
-          <Route path="/books" element={<ProductList />} />
+          <Route path="/" element={<ProductList />} />
           <Route path="/books/:id" element={<BookPage />} />
         </Routes>
       </Container>
