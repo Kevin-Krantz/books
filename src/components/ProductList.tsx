@@ -39,6 +39,10 @@ const Container = styled.div`
   justify-items: center;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 72px;
-  margin-left: 100px;
   margin-top: 32px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+  }
 `;

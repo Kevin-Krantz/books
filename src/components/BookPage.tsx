@@ -11,9 +11,9 @@ function BookPage(): JSX.Element {
     <Container>
       {product && (
         <div>
-          <Image src={product.imgUrl} alt={product.title} />
           <Title>{product.title}</Title>
-          <Author>{product.author}</Author>
+          <Image src={product.imgUrl} alt={product.title} />
+          <Author> Author: {product.author}</Author>
         </div>
       )}
     </Container>

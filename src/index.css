@@ -2,9 +2,8 @@
   font-weight: 400;
   margin: 0;
   font-family: "Nunito", sans-serif;
+  padding: 0;
 }
 
-body {
-  background-image: url("../public/images/Background.png");
-  background-size: cover;
-}
+/* body {
+} */
